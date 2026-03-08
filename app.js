@@ -9,7 +9,6 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const router = require("./src/routes/api");
 
-//Global middlewares
 app.use(cookieParser());
 app.use(
   cors({
@@ -17,20 +16,11 @@ app.use(
     credentials: true,
   }),
 );
-app.use(
-  helmet(
-    helmet.contentSecurityPolicy({
-      useDefaults: true,
-      directives: {
-        "img-src": ["'self'", "https: data:"],
-      },
-    }),
-  ),
-);
+app.use(helmet());
 app.use(mongoSanitize());
 app.use(hpp());
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 app.use("/api/v1", router);
