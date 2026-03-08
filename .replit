@@ -4,7 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
-packages = ["lsof"]
+packages = ["lsof", "psmisc"]
 
 [[ports]]
 localPort = 3001

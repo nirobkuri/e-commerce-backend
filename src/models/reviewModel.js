@@ -13,4 +13,4 @@ const DataSchema = new mongoose.Schema({
 )
 
 const reviewModel = mongoose.model("reviews", DataSchema);
-module.exports = reviewModel;
+module.exports = reviewModel; 
